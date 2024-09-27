@@ -28,12 +28,12 @@ def send_email(to_address, subject, html_content):
 
 ## ROTAS
 
-@app.route('/')
+@app.route('/api')
 def index():
     return 'Opa', 200
 
 # /api/send?email=EMAIL&nome=NOME?codigo=CODIGO
-@app.route('/send')
+@app.route('/api/send')
 def send(): 
     email = request.args.get('email')
     nome = request.args.get('nome')
@@ -45,7 +45,7 @@ def send():
     return 'Email enviado!', 200
 
 # /api/create?nome=NOME?codigo=CODIGO
-@app.route('/create')
+@app.route('/api/create')
 def create(): 
     nome = request.args.get('nome')
     codigo = request.args.get('codigo')

@@ -28,6 +28,10 @@ def send_email(to_address, subject, html_content):
 
 ## ROTAS
 
+@app.route('/')
+def index():
+    return 'Opa', 200
+
 # /api/send?email=EMAIL&nome=NOME?codigo=CODIGO
 @app.route('/send')
 def send(): 

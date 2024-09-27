@@ -16,7 +16,7 @@
           "email": email, 
           "codigo": code 
         });
-      fetch('/api/create?name=' + name + '&email=' + email + '&code=' + code);
+      fetch('https://embaixadores-beyond.vercel.app/api/create?name=' + name + '&email=' + email + '&code=' + code);
       goto('/thanks');
     }
   };

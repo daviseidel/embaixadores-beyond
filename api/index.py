@@ -3,8 +3,19 @@ import smtplib
 import json
 from jinja2 import Template
 from email.message import EmailMessage
+from flask import request
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
+
+SMTP_SERVER = 'mail.spacemail.com'  
+SMTP_PORT = 465
+EMAIL_ADDRESS = 'contato@beyondcorp.co' 
+SMTP_ADDRESS = 'Beyond Corp. <contato@beyondcorp.co>' 
+EMAIL_PASSWORD = os.getenv('EMAIL_PASSWORD')
 
 ## FUNÇÕES AUXILIARES
 
@@ -40,7 +51,7 @@ def send():
     codigo = request.args.get('codigo')
 
     template = load_template('res-emb.html')
-    html_content = template.render(name="nome", code="codigo")
+    html_content = template.render(name=nome, code=codigo)
     send_email(email, 'Você foi aceito com Embaixador Beyond!', html_content)
     return 'Email enviado!', 200
 
@@ -50,8 +61,8 @@ def create():
     nome = request.args.get('nome')
     codigo = request.args.get('codigo')
 
-    template = load_template('res-emb.html')
-    html_content = template.render(name="nome", code="codigo")
+    template = load_template('api/res-emb.html')
+    html_content = template.render(name=nome, code=codigo)
     send_email('daviseidel.brandao@gmail.com', f"Crie o código {codigo} para {nome}", html_content)
     return 'Email enviado!', 200
 

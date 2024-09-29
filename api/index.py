@@ -50,9 +50,9 @@ def send():
     nome = request.args.get('nome')
     codigo = request.args.get('codigo')
 
-    template = load_template('res-emb.html')
+    template = load_template('api/res-emb.html')
     html_content = template.render(name=nome, code=codigo)
-    send_email(email, 'Você foi aceito com Embaixador Beyond!', html_content)
+    send_email(email, 'Você foi aceito como Embaixador Beyond!', html_content)
     return 'Email enviado!', 200
 
 # /api/create?nome=NOME?codigo=CODIGO
